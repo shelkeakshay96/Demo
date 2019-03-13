@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ko_demo_form.ko_demo_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">KO Demo</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="KO\Demo\Block\Adminhtml\Buttons\SaveButton"/>
+            <button name="save_and_continue" class="KO\Demo\Block\Adminhtml\Buttons\SaveAndContinue"/>
+        </buttons>
+        <namespace>ko_demo_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>ko_demo_form.ko_demo_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="ko_demo_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="ko_demo/index/save"/>
+        </settings>
+        <dataProvider class="KO\Demo\Model\Demo\DataProvider" name="ko_demo_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <collapsible>false</collapsible>
+            <label/>
+        </settings>
+        <field name="id" formElement="hidden">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">ko_demo</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+
+        <field name="name" sortOrder="1" formElement="input">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Name</label>
+            </settings>
+        </field>
+
+        <htmlContent name="customer_edit_tab_category">
+            <block class="KO\Demo\Block\Adminhtml\Edit\Tab\Category" name="customer_edit_tab_category" template="KO_Demo::tab/category.phtml">
+                <arguments>
+                    <argument name="sort_order" xsi:type="number">2</argument>
+                    <argument name="tab_label" xsi:type="string" translate="true">Manage Category</argument>
+                </arguments>
+            </block>
+        </htmlContent>
+
+    </fieldset>
+</form>

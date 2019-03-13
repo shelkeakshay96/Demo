@@ -1,0 +1,98 @@
+<!-- <div class="admin__fieldset">
+    <div class="admin__field">
+        <label class="admin__field-label">Category</label>
+        <div class="admin__field-control">
+            <select class="admin__control-multiselect" name="categoryMU" id="category" multiple data-form-part="ko_demo_form" >
+                <option class="caption">--Select Category--</option>
+
+                <option value="1">category-A</option>
+                <option value="2">category-B</option>
+                <option value="3">category-C</option>
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <input type="text" name="base_url" id="base_url">
+    </div>
+    <div class="admin__field">
+        <label class="admin__field-label">Sub Category</label>
+        <div class="admin__field-control">
+            <select class="admin__control-multiselect" name="subcategoryMU" id="sub-category" multiple data-form-part="ko_demo_form">
+                <option class="caption">--Select Sub-Category--</option>
+            </select>
+        </div>
+    </div>
+</div> -->
+<script type="text/x-magento-init">
+    {
+        "*": 
+            "third": {
+                "var1" : "hello"
+            }
+        }
+    }
+</script>
+<!-- 
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        'use strict';
+
+        $('#category').change(function() {
+            var subCategotyVal = $('#sub-category').val();
+            $("#sub-category option").prop("selected", false);
+            $('#sub-category option').remove();
+            $('#sub-category').append('<option>--Select Sub-Category--</option>');
+
+            $.ajax({
+                type: "GET",
+                showLoader:true,
+                url: "http://192.168.2.104/magento226/admin/ko/ajax/getsubcategories/id/"+$(this).val(),
+                success: function(data) {
+                    var arr = new Array();
+
+                    for(var i=0; i<data.length; i++) {
+                        var option = '<option data-title="'+data[i]['subcategory_name']+'" value="'+data[i]['id']+'">'+data[i]['subcategory_name']+'</option>' ;
+                        $('#sub-category').append(option);
+
+                        if(subCategotyVal != null && subCategotyVal.indexOf(data[i]['id']) != -1) {
+                            arr = (arr.length == 0) ? data[i]['id'] : arr+","+data[i]['id'];
+                        }
+                    }
+
+                    if(arr != "" && subCategotyVal != null) {
+                        $.each(arr.split(","), function(i,e){
+                            $("#sub-category option[value='" + e + "']").prop("selected", true);
+                        });
+                    }
+                }
+            });
+        });
+
+        // in edit form
+        var category = '<?php //echo $block->setCategoryValue(); ?>';
+        $.each(category.split(","), function(i,e) {
+            $("#category option[value='" + e + "']").prop("selected", true);
+        });
+
+        $.ajax({
+            type: "GET",
+            showLoader:true,
+            url: "http://192.168.2.104/magento226/admin/ko/ajax/getsubcategories/id/"+category,
+            success: function(data) {
+                for(var i=0; i<data.length; i++) {
+                    var option = '<option data-title="'+data[i]['subcategory_name']+'" value="'+data[i]['id']+'">'+data[i]['subcategory_name']+'</option>'
+                    $('#sub-category').append(option);
+                }
+                var subCategoty = '<?php //echo $block->setSubcategoryValue(); ?>';
+                $.each(subCategoty.split(","), function(i,e) {
+                    $("#sub-category option[value='" + e + "']").prop("selected", true);
+                });
+            }
+        });
+    });
+
+</script>
+ -->
